@@ -1,0 +1,34 @@
+<style>
+	button {
+		height: 3rem;
+		width: 3rem;
+	}
+</style>
+<script>
+function copy(me){
+	navigator.clipboard.writeText(me.innerText);
+}
+</script>
+<script>
+(function(){
+	let rows = [
+		[, "←↑→↓↔↕↖↗↘↙"],
+		[, ['➡️', '⬅️', '⬆️', '⬇️', '↔️', '↕️', '↖️', '↗️', '↘️', '↙️']],
+	];
+
+	if(!rows.length) return;
+
+	for(let rn = 0;;){
+		let row = rows[rn];
+		row.shift();
+		row = row.shift();
+		for(let cn = 0; cn < row.length; cn++){
+			document.write(`<button onclick="copy(this)">${row[cn]}</button>`);
+		}
+
+		if(++rn == rows.length) break;
+
+		document.writeln("<br>");
+	}
+})()
+</script>
