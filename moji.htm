@@ -1,36 +1,60 @@
 <style>
 button {
-	height: 3rem;
-	width: 3rem;
+	font-size: 2rem;
+	width: 4rem;
+	height: 4rem;
 }
 </style>
 <script>
 echo = alert;
 
 function copy(me){
-	var chr = me.innerText;
-	navigator.clipboard.writeText(chr);
-	echo("Character copied: " + chr);
+	var s = result.value += me.innerText;
+	result.select();
+	document.execCommand("copy");
+	echo("Character copied: " + s);
 }
 </script>
 <script>
-(function(){
+0,function(){
+	let 万 = [], 索 = [], 筒 = [], 花 = [], 字 = ['🀫'];
 	let rows = [
 		"←↑→↓↔↕↖↗↘↙",
-		['➡️', '⬅️', '⬆️', '⬇️', '↔️', '↕️', '↖️', '↗️', '↘️', '↙️']
+		['➡️', '⬅️', '⬆️', '⬇️', '↔️', '↕️', '↖️', '↗️', '↘️', '↙️'],
+		万,索,筒,花,字
 	];
+
+	for(let i = 0; i < 9; i++){
+		万.push(String.fromCodePoint(0x1F007 + i));
+		索.push(String.fromCodePoint(0x1F010 + i));
+		筒.push(String.fromCodePoint(0x1F019 + i));
+		花.push(String.fromCodePoint(0x1F022 + i));
+	}
+	for(let i = 0; i < 7; i++) 字.push(String.fromCodePoint(0x1F000 + i));
 
 	if(!rows.length) return;
 
-	for(let rn = 0;;){
+	for(let rn = 0; rn < rows.length; rn++){
 		let row = rows[rn];
 		for(let cn = 0; cn < row.length; cn++){
-			document.write(`<button onclick="copy(this)">${row[cn]}</button>`);
+			document.write(`<button>${row[cn]}</button>`);
 		}
-
-		if(++rn == rows.length) break;
 
 		document.writeln("<br>");
 	}
-})()
+}()
+0,function(){
+	var last;
+	document.onmousedown = evt => last = evt.target;
+	document.onclick = evt => {
+		var me = evt.target;
+
+		if(me != last) return;
+
+		me instanceof HTMLButtonElement && copy(me);
+	};
+}()
 </script>
+<form>
+	<input id="result"><input type="reset">
+</form>
