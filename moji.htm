@@ -44,14 +44,25 @@ function copy(me){
 	}
 }()
 0,function(){
-	var last;
-	document.onmousedown = evt => last = evt.target;
+	var downed, last;
+	document.onmousedown = evt => downed = evt.target;
 	document.onclick = evt => {
 		var me = evt.target;
 
-		if(me != last) return;
+		try{
+			if(me !== downed) return;
 
-		me instanceof HTMLButtonElement && copy(me);
+			if(!(me instanceof HTMLElement)) return;
+
+			me instanceof HTMLButtonElement && copy(me);
+
+			if(me === last) return;
+
+			((me instanceof HTMLInputElement) || (me instanceof HTMLTextAreaElement)) && me.select();
+
+		}finally{
+			last = me;		
+		}
 	};
 }()
 </script>
