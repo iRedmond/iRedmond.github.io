@@ -1,14 +1,16 @@
 <style>
-	button {
-		height: 3rem;
-		width: 3rem;
-	}
+button {
+	height: 3rem;
+	width: 3rem;
+}
 </style>
 <script>
+echo = alert;
+
 function copy(me){
 	var chr = me.innerText;
-	navigator.clipboard.writeText(me.innerText);
-	alert("Character copied: " + chr);
+	navigator.clipboard.writeText(chr);
+	echo("Character copied: " + chr);
 }
 </script>
 <script>
