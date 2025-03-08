@@ -6,22 +6,22 @@
 </style>
 <script>
 function copy(me){
+	var chr = me.innerText;
 	navigator.clipboard.writeText(me.innerText);
+	alert("Character copied: " + chr);
 }
 </script>
 <script>
 (function(){
 	let rows = [
-		[, "←↑→↓↔↕↖↗↘↙"],
-		[, ['➡️', '⬅️', '⬆️', '⬇️', '↔️', '↕️', '↖️', '↗️', '↘️', '↙️']],
+		"←↑→↓↔↕↖↗↘↙",
+		['➡️', '⬅️', '⬆️', '⬇️', '↔️', '↕️', '↖️', '↗️', '↘️', '↙️']
 	];
 
 	if(!rows.length) return;
 
 	for(let rn = 0;;){
 		let row = rows[rn];
-		row.shift();
-		row = row.shift();
 		for(let cn = 0; cn < row.length; cn++){
 			document.write(`<button onclick="copy(this)">${row[cn]}</button>`);
 		}
