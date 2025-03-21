@@ -1,12 +1,15 @@
 <!-- I don't know why I'm doing this since IE doesn't support emoji at all, maybe I just love doing it -->
 <meta http-equiv="X-UA-Compatible" content="IE=11">
 <style>
-body { text-align: center }
-body * { font-size: 4vw }
+body {
+	min-width: 200px;
+	text-align: center;
+}
+body * { font-size: 4vmin }
 button {
 	width: 2em;
 	height: 2em;
-	margin: .125em;
+	margin: .17em;
 }
 </style>
 <script>
@@ -35,14 +38,14 @@ function copy(me){
 	var rows = [
 		"¹²³⁴⁵⁶⁷⁸⁹⁰",
 		"₁₂₃₄₅₆₇₈₉₀",
-		"←↑→↓↔↕↖↗↘↙",
-		"üǖǘǚǜÜǕǗǙǛ",
-		"ǣ́̌̀Æˉˊˇˋ",
+		"←↑→↓↔↕↖↗↘↙"
+		,,"ǣ́̌̀Æˉˊˇˋ",
 		"āēīōūĀĒĪŌŪ",
 		"áéíóúÁÉÍÓÚ",
 		"ǎěǐǒǔǍĚǏǑǓ",
 		"àèìòùÀÈÌÒÙ",
-		万,索,筒,花,字,
+		"üǖǘǚǜÜǕǗǙǛ",
+		,万,索,筒,花,字,
 		['➡️', '⬅️', '⬆️', '⬇️', '↔️', '↕️', '↖️', '↗️', '↘️', '↙️'],
 	];
 
@@ -58,11 +61,13 @@ function copy(me){
 
 	for(let rn = 0; rn < rows.length; rn++){
 		let row = rows[rn];
+		if(!row) {
+			document.writeln("<br>");
+			continue;
+		}
 		for(let cn = 0; cn < row.length; cn++){
 			document.write("<button>" + row[cn] + "</button>");
 		}
-
-		document.writeln("<br>");
 	}
 }()
 0,function(){
@@ -91,6 +96,7 @@ function copy(me){
 	}
 }()
 </script>
+<br>
 <form>
 	<input id="result"><input type="reset">
 </form>
